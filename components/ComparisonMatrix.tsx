@@ -215,13 +215,6 @@ const ComparisonMatrix = ({ selectedCandidateIds }: ComparisonMatrixProps) => {
         <div className="text-center p-4 text-red-500 mt-12">{error}</div>
       )}
 
-      {/* Loading State */}
-      {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 z-20">
-          <div className="text-gray-500">Loading candidate data...</div>
-        </div>
-      )}
-
       {/* Message when no candidates are selected */}
       {!loading && selectedCandidateIds.length === 0 && !error && (
         <div className="absolute inset-0 flex items-center justify-center">
