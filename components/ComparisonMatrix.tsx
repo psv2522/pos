@@ -76,7 +76,7 @@ const getScoreColor = (score: number): string => {
 
 const ComparisonMatrix = () => {
   return (
-    <div className="bg-white p-4 pl-16 shadow border border-black">
+    <div className="bg-white p-4 pl-8 border-t border-black">
       <div className="overflow-x-auto">
         <div className="inline-block min-w-full align-middle">
           <div className="flex">
@@ -98,21 +98,21 @@ const ComparisonMatrix = () => {
             <div className="flex">
               {displayedCandidates.map((candidate) => (
                 <div key={candidate.id} className="w-10 flex-shrink-0 mx-px">
+                  <div className="h-4 flex items-center justify-center mb-1 rotate-315">
+                    <span className="text-[10px] text-gray-500 whitespace-nowrap">
+                      {candidate.id}
+                    </span>
+                  </div>
                   <div className="h-10 flex items-center justify-center">
                     <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center text-[10px] font-medium text-gray-500">
                       {candidate.id.substring(0, 2)}
                     </div>
                   </div>
-                  <div className="h-4 flex items-center justify-center mb-1">
-                    <span className="text-[10px] text-gray-500 whitespace-nowrap">
-                      {candidate.id}
-                    </span>
-                  </div>
 
                   {criteria.map((criterion) => (
                     <div
                       key={`${candidate.id}-${criterion.name}`}
-                      className="h-8 border border-gray-200 flex items-center justify-center"
+                      className="h-8 flex items-center justify-center"
                     >
                       {criterion.type === "number" ? (
                         <span className="text-xs font-semibold text-gray-700">
@@ -124,11 +124,11 @@ const ComparisonMatrix = () => {
                         </span>
                       ) : (
                         <div
-                          className={`w-6 h-6 ${getScoreColor(
+                          className={`w-9 h-6 ${getScoreColor(
                             candidate.data[
                               criterion.name as keyof typeof candidate.data
                             ]
-                          )} rounded-sm`}
+                          )}`}
                         ></div>
                       )}
                     </div>

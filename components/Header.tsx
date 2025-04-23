@@ -5,11 +5,11 @@ const Header = () => {
   return (
     <header className="bg-white p-4 ml-10 flex justify-between">
       <div>
-        <div className="flex items-center text-sm text-gray-600 mb-2">
+        <div className="flex items-center text-sm text-gray-600 mb-4">
           <ChevronLeft size={16} className="mr-1 text-[#707070]" />
           <span>Back to My Jobs</span>
         </div>
-        <h1 className="text-2xl font-semibold text-gray-800">
+        <h1 className="text-3xl font-semibold text-gray-500 ml-4">
           Posk_UXdesigner_sr001
         </h1>
       </div>
