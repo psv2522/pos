@@ -1,36 +1,15 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import ComparisonMatrix from "./ComparisonMatrix"; // Will create this next
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
 const MainContent = () => {
-  const [addedCandidates, setAddedCandidates] = useState<Set<string>>(
-    new Set()
-  );
-
-  const handleToggleCandidate = (id: string) => {
-    setAddedCandidates((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        // If already added, remove (optional, current Sidebar logic only adds)
-        // newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
-
   return (
     <main className="flex-1 overflow-y-auto py-6 bg-white">
       <Header />
       <div className="flex gap-10">
-        <Sidebar
-          addedCandidates={addedCandidates}
-          onToggleCandidate={handleToggleCandidate}
-        />
+        <Sidebar />
         <div className="flex flex-col">
           <div className="flex justify-between items-center">
             {/* Tabs */}
@@ -46,7 +25,7 @@ const MainContent = () => {
               </button>
             </div>
           </div>
-          <ComparisonMatrix addedCandidates={addedCandidates} />
+          <ComparisonMatrix />
         </div>
       </div>
     </main>

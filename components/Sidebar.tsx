@@ -11,11 +11,6 @@ interface Candidate {
   bio: string;
 }
 
-interface SidebarProps {
-  addedCandidates: Set<string>;
-  onToggleCandidate: (id: string) => void;
-}
-
 const getInitials = (name: string): string => {
   const names = name.split(" ");
   if (names.length === 1) {
@@ -24,8 +19,11 @@ const getInitials = (name: string): string => {
   return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
 };
 
-const Sidebar = ({ addedCandidates, onToggleCandidate }: SidebarProps) => {
+const Sidebar = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
+  const [addedCandidates, setAddedCandidates] = useState<Set<string>>(
+    new Set()
+  );
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -56,6 +54,14 @@ const Sidebar = ({ addedCandidates, onToggleCandidate }: SidebarProps) => {
 
     fetchCandidates();
   }, []);
+
+  const handleToggleCandidate = (id: string) => {
+    setAddedCandidates((prev) => {
+      const newSet = new Set(prev);
+      newSet.add(id);
+      return newSet;
+    });
+  };
 
   const availableCandidates = candidates.filter(
     (c) => !addedCandidates.has(c.id)
@@ -122,7 +128,7 @@ const Sidebar = ({ addedCandidates, onToggleCandidate }: SidebarProps) => {
                   </div>
                   <button
                     className="p-1 rounded text-[#978afa] hover:bg-gray-100 cursor-pointer"
-                    onClick={() => onToggleCandidate(candidate.id)}
+                    onClick={() => handleToggleCandidate(candidate.id)}
                     aria-label={`Add ${candidate.name}`}
                   >
                     <PlusCircle size={18} />
